@@ -12,10 +12,6 @@ const firebaseConfig = {
   appId: "1:479625917781:web:bcbf911d2b52571a26ebdc",
   // apiKey: "AIzaSyAqzfoAvQeA9p0qqyJvOihYGxODQky_vB8",
   // authDomain: "course-share-platform.firebaseapp.com",
-  // projectId: "course-share-platform",
-  // storageBucket: "course-share-platform.firebasestorage.app",
-  // messagingSenderId: "1082710178100",
-  // appId: "1:1082710178100:web:daab092fda8b8a7d244d61",
 };
 
 // Initialize Firebase
