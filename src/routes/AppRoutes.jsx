@@ -40,7 +40,7 @@ const AppRoutes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/courses" element={<AllCourses />} />
-          {/* <Route path="/course/:id" element={<CourseDetails />} /> */}
+
           <Route path="/test-courses" element={<TestCourses />} />
 
           {/* Private Routes */}

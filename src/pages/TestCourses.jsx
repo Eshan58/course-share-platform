@@ -135,10 +135,10 @@ const TestCourses = () => {
                         {course.description}
                       </p>
                       <div className="flex gap-4 mt-2 text-sm text-gray-500">
-                        <span>💰 ${course.price}</span>
-                        <span>📁 {course.category}</span>
-                        <span>👤 {course.students} students</span>
-                        <span>⭐ {course.rating}/5</span>
+                        <span> ${course.price}</span>
+                        <span> {course.category}</span>
+                        <span> {course.students} students</span>
+                        <span> {course.rating}/5</span>
                       </div>
                     </div>
                   </div>
