@@ -231,7 +231,7 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       const interval = setInterval(() => {
         refreshToken();
-      }, 45 * 60 * 1000); // 45 minutes
+      }, 45 * 60 * 1000);
 
       return () => clearInterval(interval);
     }

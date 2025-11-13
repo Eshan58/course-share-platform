@@ -10,8 +10,6 @@ const firebaseConfig = {
   storageBucket: "client-share-platform-auth.firebasestorage.app",
   messagingSenderId: "479625917781",
   appId: "1:479625917781:web:bcbf911d2b52571a26ebdc",
-  // apiKey: "AIzaSyAqzfoAvQeA9p0qqyJvOihYGxODQky_vB8",
-  // authDomain: "course-share-platform.firebaseapp.com",
 };
 
 // Initialize Firebase
