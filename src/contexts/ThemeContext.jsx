@@ -17,17 +17,13 @@ export const ThemeProvider = ({ children }) => {
       if (saved === "dark") return true;
       if (saved === "light") return false;
 
-      // Handle old boolean format or invalid data
       if (saved) {
         const parsed = JSON.parse(saved);
         return Boolean(parsed);
       }
 
-      // Default to light theme
       return false;
     } catch (error) {
-      // console.error("Error reading theme from localStorage:", error);
-      // Clear invalid data and default to light theme
       localStorage.removeItem("theme");
       return false;
     }
@@ -43,9 +39,7 @@ export const ThemeProvider = ({ children }) => {
       } else {
         document.documentElement.classList.remove("dark");
       }
-    } catch (error) {
-      // console.error("Error saving theme to localStorage:", error)
-    }
+    } catch (error) {}
   }, [isDark]);
 
   const toggleTheme = () => {

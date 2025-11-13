@@ -46,18 +46,14 @@ export const EnrollmentProvider = ({ children }) => {
         setEnrollments(response.enrollments || []);
 
         if (response.source === "mock") {
-          // console.log("Using mock enrollment data - backend unavailable");
           setError("Backend temporarily unavailable - using demo data");
         } else {
-          setError(null); // Clear error if API succeeds
+          setError(null);
         }
       } else {
         throw new Error(response.message || "Failed to fetch enrollments");
       }
     } catch (err) {
-      // console.error("Error loading enrollments:", err);
-
-      // Don't set error for network issues - just use empty array and log
       if (
         err.message.includes("Network") ||
         err.message.includes("connection")
