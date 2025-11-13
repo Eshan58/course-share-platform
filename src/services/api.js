@@ -107,7 +107,7 @@ api.interceptors.response.use(
   }
 );
 
-// FIXED: Enhanced mock data for development
+// FIXED: Enhanced mock data for development----
 const mockCourses = [
   {
     _id: "6611e1b4105ff1cef2982085",

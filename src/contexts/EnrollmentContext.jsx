@@ -186,7 +186,6 @@ export const EnrollmentProvider = ({ children }) => {
       );
 
       if (response.success) {
-        // Update the enrollment in the list
         setEnrollments((prev) =>
           prev.map((e) =>
             e._id === enrollmentId ? { ...e, ...progressData } : e

@@ -14,7 +14,7 @@ const TestBackendConnection = () => {
     try {
       setLoading(true);
 
-      // Test health endpoint
+      // Test health endpoint--
       const healthResponse = await healthCheck();
       setHealth(healthResponse);
 
