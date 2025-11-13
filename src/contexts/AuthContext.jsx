@@ -114,7 +114,6 @@ export const AuthProvider = ({ children }) => {
       toast.success("Welcome back! ");
       return result.user;
     } catch (error) {
-      // console.error("Sign-in error:", error);
       toast.error(error.message || "Failed to sign in.");
       throw error;
     } finally {
@@ -226,7 +225,7 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // 🔹 Auto token refresh 
+  // 🔹 Auto token refresh
   useEffect(() => {
     if (user) {
       const interval = setInterval(() => {

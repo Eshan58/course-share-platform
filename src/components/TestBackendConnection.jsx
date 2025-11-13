@@ -24,7 +24,6 @@ const TestBackendConnection = () => {
         setCourses(coursesResponse.courses);
       }
     } catch (error) {
-      // console.error("Backend connection test failed:", error);
       setHealth({ message: "Connection failed", error: error.message });
     } finally {
       setLoading(false);

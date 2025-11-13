@@ -24,7 +24,6 @@ export const EnrollmentProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const { user } = useAuth();
 
-  // FIXED: Use useCallback to prevent infinite re-renders with better error handling
   const fetchUserEnrollments = useCallback(async () => {
     if (!user) {
       setEnrollments([]);
@@ -36,27 +35,16 @@ export const EnrollmentProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      // Use the user's UID from Firebase auth
       const userId = user.uid || user.id;
 
       if (!userId) {
-        // console.warn("No user ID available, using demo user");
-        // Don't throw error, just use demo user
       }
-
-      // console.log("📖 Fetching enrollments for user:", userId);
 
       const response = await enrollmentAPI.getUserEnrollments(userId);
 
       if (response.success) {
         setEnrollments(response.enrollments || []);
-        // console.log(
-        //   "Enrollments loaded:",
-        //   response.enrollments?.length || 0,
-        //   response.source ? `(source: ${response.source})` : ""
-        // );
 
-        // If using mock data, set a info message instead of error
         if (response.source === "mock") {
           // console.log("Using mock enrollment data - backend unavailable");
           setError("Backend temporarily unavailable - using demo data");

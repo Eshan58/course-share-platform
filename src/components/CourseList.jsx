@@ -19,7 +19,6 @@ const CourseList = () => {
       }
     } catch (err) {
       setError("Failed to load courses");
-      // console.error("Error loading courses:", err);
     } finally {
       setLoading(false);
     }
