@@ -49,7 +49,7 @@ const AddCourse = () => {
     },
   });
 
-  // Create course mutation--
+  // Create course mutation-
   const createCourseMutation = useMutation({
     mutationFn: async (data) => {
     

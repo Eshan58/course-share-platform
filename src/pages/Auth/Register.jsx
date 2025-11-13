@@ -59,9 +59,9 @@ const Register = () => {
       toast.success("Account created with Google successfully! 🎉");
       navigate("/");
     } catch (error) {
-      // console.error("Google registration error:", error);
+      // console.error("Google registration error:", error)
 
-      // Better Google error handling
+      
       if (error.code === "auth/popup-closed-by-user") {
         toast.error("Sign-in was cancelled.");
       } else if (error.code === "auth/popup-blocked") {

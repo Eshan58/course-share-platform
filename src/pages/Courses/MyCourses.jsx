@@ -153,7 +153,7 @@ const MyCourses = () => {
       toast.success("Course deleted successfully");
     },
     onError: (error, courseId) => {
-      // console.error(" Error deleting course:", error);
+      // console.error(" Error deleting course:", error)
       toast.error(error.message || "Failed to delete course");
     },
   });

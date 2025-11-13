@@ -47,7 +47,7 @@ const Login = () => {
       toast.success("Logged in with Google successfully!");
       navigate(from, { replace: true });
     } catch (error) {
-      // console.error("Google login error:", error);
+      // console.error("Google login error:", error)
       toast.error(error.message || "Failed to login with Google.");
     } finally {
       setLoading(false);

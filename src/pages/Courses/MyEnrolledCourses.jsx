@@ -227,7 +227,7 @@ export const EnrollmentProvider = ({ children }) => {
     isEnrolledInCourse,
     getEnrolledCourseIds,
 
-    // Convenience getters--
+    // Convenience getters-
     hasEnrollments: state.enrollments.length > 0,
     enrolledCourses: state.enrollments,
   };

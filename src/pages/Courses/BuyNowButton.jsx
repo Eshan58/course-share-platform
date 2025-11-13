@@ -61,7 +61,7 @@ const BuyNowButton = ({
       const result = await enrollInCourse(courseId);
 
       
-      // console.log(" Course enrolled successfully");
+      // console.log(" Course enrolled successfully")
       toast.success("Successfully enrolled in the course!");
 
       // Refresh enrolled courses list

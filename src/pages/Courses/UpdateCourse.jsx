@@ -65,11 +65,11 @@ const UpdateCourse = () => {
       const errorMessage =
         error.response?.data?.message || "Failed to update course";
       toast.error(errorMessage);
-      // console.error("Error updating course:", error);
+      // console.error("Error updating course:", error)
     },
   });
 
-  // Pre-fill form when course data is loaded
+  
   useEffect(() => {
     if (course) {
       reset({

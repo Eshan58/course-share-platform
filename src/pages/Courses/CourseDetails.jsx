@@ -234,7 +234,7 @@ const CourseDetails = () => {
       return enrollmentAPI.enrollInCourse(id);
     },
     onSuccess: (data) => {
-      // console.log("Enrollment successful:", data);
+      // console.log("Enrollment successful:", data)
       setIsEnrolled(true);
       toast.success("🎉 Successfully enrolled in course!");
       queryClient.invalidateQueries(["enrollments"]);
