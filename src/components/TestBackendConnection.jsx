@@ -18,7 +18,7 @@ const TestBackendConnection = () => {
       const healthResponse = await healthCheck();
       setHealth(healthResponse);
 
-      // Test courses endpoint
+      // Test courses endpoint---
       const coursesResponse = await courseAPI.getAllCourses();
       if (coursesResponse.success) {
         setCourses(coursesResponse.courses);

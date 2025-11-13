@@ -26,15 +26,13 @@ const CourseCard = ({ course, onViewDetails }) => {
   const handleEnroll = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // console.log("Enrolling in course:", course._id)
-    // Add enrollment logic here
+    
   };
 
   const handleQuickView = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // Add quick view logic here
-    // console.log("Quick view:", course._id);
+   
   };
 
   const handleAddToWishlist = (e) => {
