@@ -52,7 +52,7 @@ const AddCourse = () => {
   // Create course mutation--
   const createCourseMutation = useMutation({
     mutationFn: async (data) => {
-      // Add instructor information to course data
+    
       const courseData = {
         ...data,
         instructor: {

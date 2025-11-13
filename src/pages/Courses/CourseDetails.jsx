@@ -225,7 +225,7 @@ const CourseDetails = () => {
     }
   }, [id, user?.uid, isAuthenticated, course]);
 
-  // Enhanced enrollment mutation
+  
   const enrollMutation = useMutation({
     mutationFn: () => {
       if (!id || !user?.uid) {
