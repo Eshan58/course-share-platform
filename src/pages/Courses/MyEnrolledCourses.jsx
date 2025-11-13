@@ -227,7 +227,7 @@ export const EnrollmentProvider = ({ children }) => {
     isEnrolledInCourse,
     getEnrolledCourseIds,
 
-    // Convenience getters
+    // Convenience getters--
     hasEnrollments: state.enrollments.length > 0,
     enrolledCourses: state.enrollments,
   };
@@ -239,7 +239,7 @@ export const EnrollmentProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the enrollment context
+// Custom hook to use the enrollment
 export const useEnrollment = () => {
   const context = useContext(EnrollmentContext);
   if (!context) {

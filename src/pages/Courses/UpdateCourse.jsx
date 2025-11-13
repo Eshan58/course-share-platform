@@ -104,8 +104,7 @@ const UpdateCourse = () => {
     setImageUploading(true);
 
     try {
-      // In a real application, you would upload to a service like Cloudinary, AWS S3, etc.
-      // For now, we'll simulate upload and use a mock URL
+     
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Generate a unique mock URL
