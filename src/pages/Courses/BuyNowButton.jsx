@@ -60,7 +60,7 @@ const BuyNowButton = ({
       // console.log(" Starting enrollment process for course:", courseId);
       const result = await enrollInCourse(courseId);
 
-      // Handle successful enrollment
+      
       // console.log(" Course enrolled successfully");
       toast.success("Successfully enrolled in the course!");
 

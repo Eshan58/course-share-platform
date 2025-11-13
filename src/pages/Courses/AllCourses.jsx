@@ -532,7 +532,7 @@ const AllCourses = () => {
     );
   }
 
-  // Loading state
+  // Loading state --
   if (isLoading) {
     return (
       <div className="min-h-screen bg-base-100 py-8">
