@@ -1134,7 +1134,7 @@ const generalAPI = {
       // console.log(" Running in mock mode - some features may use demo data");
       return {
         backend: false,
-        courses: true, // We have mock courses
+        courses: true, 
         status: "mock_mode",
         message: "Using demo data - backend not available",
         source: "mock",
@@ -1143,18 +1143,18 @@ const generalAPI = {
   },
 };
 
-// FIXED: Individual exports for specific functions - ADDED MISSING EXPORTS
+
 export const healthCheck = generalAPI.healthCheck;
 export const testConnection = generalAPI.testConnection;
 export const testBackendConnection = generalAPI.testBackendConnection;
 
-// Export API groups
+
 export { courseAPI, userAPI, enrollmentAPI, categoriesAPI, generalAPI };
 
-// Export default api instance
+
 export default api;
 
-// FIXED: Initialize API AFTER all definitions and exports
+
 generalAPI.initialize().then((status) => {
-  // console.log("API Status:", status);
+  
 });
