@@ -44,7 +44,7 @@ export const ThemeProvider = ({ children }) => {
         document.documentElement.classList.remove("dark");
       }
     } catch (error) {
-      // console.error("Error saving theme to localStorage:", error);
+      // console.error("Error saving theme to localStorage:", error)
     }
   }, [isDark]);
 

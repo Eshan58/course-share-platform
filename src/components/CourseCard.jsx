@@ -26,7 +26,7 @@ const CourseCard = ({ course, onViewDetails }) => {
   const handleEnroll = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // console.log("Enrolling in course:", course._id);
+    // console.log("Enrolling in course:", course._id)
     // Add enrollment logic here
   };
 

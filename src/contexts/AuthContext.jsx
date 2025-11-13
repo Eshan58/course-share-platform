@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
       };
       setUser(loggedUser);
 
-      toast.success("Welcome back! 👋");
+      toast.success("Welcome back! ");
       return result.user;
     } catch (error) {
       // console.error("Sign-in error:", error);
@@ -154,7 +154,7 @@ export const AuthProvider = ({ children }) => {
       await signOut(auth);
       setUser(null);
       localStorage.removeItem("token");
-      toast.success("Logged out successfully! 👋");
+      toast.success("Logged out successfully! ");
     } catch (error) {
       // console.error("Logout error:", error);
       toast.error("Failed to log out.");
@@ -192,10 +192,10 @@ export const AuthProvider = ({ children }) => {
 
         // Sync with backend
         await syncUserWithBackend(currentUser);
-        toast.success("Profile updated successfully! ✅");
+        toast.success("Profile updated successfully! ");
       }
     } catch (error) {
-      // console.error("Profile update error:", error);
+      // console.error
       toast.error("Failed to update profile.");
       throw error;
     }
@@ -217,7 +217,7 @@ export const AuthProvider = ({ children }) => {
           setUser(null);
         }
       } catch (error) {
-        // console.error("Auth listener error:", error);
+        // console.error
       } finally {
         setLoading(false);
       }
@@ -226,7 +226,7 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // 🔹 Auto token refresh (every 45 minutes)
+  // 🔹 Auto token refresh 
   useEffect(() => {
     if (user) {
       const interval = setInterval(() => {
