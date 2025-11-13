@@ -12,22 +12,22 @@ const TestCourses = () => {
   }, []);
 
   const loadData = async () => {
-    console.log("🔍 Starting connection test...");
+    // console.log(" Starting connection test...");
 
     // Test health check
     const healthResult = await healthCheck();
     setHealth(healthResult);
-    console.log("🏥 Health check:", healthResult);
+    // console.log(" Health check:", healthResult);
 
     // Test connection
     const connectionTest = await testConnection();
     setConnection(connectionTest);
-    console.log("🔗 Connection test:", connectionTest);
+    // console.log(" Connection test:", connectionTest);
 
     // Test courses
-    console.log("📚 Fetching courses...");
+    // console.log("Fetching courses...");
     const coursesResult = await courseAPI.getAllCourses();
-    console.log("🎯 Courses result:", coursesResult);
+    // console.log("Courses result:", coursesResult);
 
     if (coursesResult.success) {
       setCourses(coursesResult.courses);
@@ -146,36 +146,6 @@ const TestCourses = () => {
               ))}
             </div>
           )}
-        </div>
-
-        {/* Debug Information */}
-        <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold mb-3">🐛 Debug Information</h3>
-          <div className="text-sm">
-            <p>
-              <strong>API Base URL:</strong> http://localhost:5000/api
-            </p>
-            <p>
-              <strong>Expected Endpoints:</strong>
-            </p>
-            <ul className="list-disc list-inside ml-4">
-              <li>
-                <code>/health</code> - Server status
-              </li>
-              <li>
-                <code>/courses</code> - All courses
-              </li>
-              <li>
-                <code>/courses/instructor/username</code> - Instructor courses
-              </li>
-              <li>
-                <code>/users</code> - User sync
-              </li>
-            </ul>
-            <p className="mt-2">
-              <strong>Check browser console (F12) for detailed logs</strong>
-            </p>
-          </div>
         </div>
       </div>
     </div>

@@ -65,7 +65,7 @@ const UpdateCourse = () => {
       const errorMessage =
         error.response?.data?.message || "Failed to update course";
       toast.error(errorMessage);
-      console.error("Error updating course:", error);
+      // console.error("Error updating course:", error);
     },
   });
 
@@ -115,7 +115,7 @@ const UpdateCourse = () => {
       toast.success("Image uploaded successfully!");
     } catch (error) {
       toast.error("Failed to upload image");
-      console.error("Image upload error:", error);
+      // console.error("Image upload error:", error);
     } finally {
       setImageUploading(false);
     }

@@ -29,7 +29,7 @@ const BuyNowButton = ({
     if (typeof isEnrolledInCourse === "function") {
       return isEnrolledInCourse(courseId);
     }
-    console.warn("No enrollment check function available");
+    // console.warn("No enrollment check function available");
     return false;
   };
 
@@ -57,11 +57,11 @@ const BuyNowButton = ({
     setIsProcessing(true);
 
     try {
-      console.log(" Starting enrollment process for course:", courseId);
+      // console.log(" Starting enrollment process for course:", courseId);
       const result = await enrollInCourse(courseId);
 
       // Handle successful enrollment
-      console.log(" Course enrolled successfully");
+      // console.log(" Course enrolled successfully");
       toast.success("Successfully enrolled in the course!");
 
       // Refresh enrolled courses list
@@ -72,7 +72,7 @@ const BuyNowButton = ({
         onEnrollSuccess(courseId);
       }
     } catch (error) {
-      console.error(" Enrollment failed:", error);
+      // console.error(" Enrollment failed:", error);
 
       // Handle specific error types
       if (error.response?.status === 404) {
@@ -80,7 +80,7 @@ const BuyNowButton = ({
           "Enrollment service is temporarily unavailable. Using demo mode."
         );
         // You can still consider this a "success" for demo purposes
-        console.log(" Using mock enrollment data");
+        // console.log(" Using mock enrollment data");
         toast.success("Enrolled successfully (demo mode)");
       } else if (error.response?.status === 409) {
         toast.error("You are already enrolled in this course");

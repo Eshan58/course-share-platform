@@ -133,7 +133,7 @@ const MyCourses = () => {
         const data = await courseAPI.getMyCourses();
         return data;
       } catch (error) {
-        console.error("❌ Error fetching courses:", error);
+        // console.error("Error fetching courses:", error);
         throw new Error(
           error.message ||
             "Failed to load courses. Please check your connection."
@@ -153,7 +153,7 @@ const MyCourses = () => {
       toast.success("Course deleted successfully");
     },
     onError: (error, courseId) => {
-      console.error("❌ Error deleting course:", error);
+      // console.error(" Error deleting course:", error);
       toast.error(error.message || "Failed to delete course");
     },
   });

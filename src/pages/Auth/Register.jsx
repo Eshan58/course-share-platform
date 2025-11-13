@@ -31,7 +31,7 @@ const Register = () => {
       toast.success("Account created successfully! Welcome! 🎉");
       navigate("/");
     } catch (error) {
-      console.error("Registration error:", error);
+      // console.error("Registration error:", error);
 
       // Better error messages
       if (error.code === "auth/email-already-in-use") {
@@ -59,7 +59,7 @@ const Register = () => {
       toast.success("Account created with Google successfully! 🎉");
       navigate("/");
     } catch (error) {
-      console.error("Google registration error:", error);
+      // console.error("Google registration error:", error);
 
       // Better Google error handling
       if (error.code === "auth/popup-closed-by-user") {

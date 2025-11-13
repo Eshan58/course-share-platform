@@ -40,25 +40,25 @@ export const EnrollmentProvider = ({ children }) => {
       const userId = user.uid || user.id;
 
       if (!userId) {
-        console.warn("No user ID available, using demo user");
+        // console.warn("No user ID available, using demo user");
         // Don't throw error, just use demo user
       }
 
-      console.log("📖 Fetching enrollments for user:", userId);
+      // console.log("📖 Fetching enrollments for user:", userId);
 
       const response = await enrollmentAPI.getUserEnrollments(userId);
 
       if (response.success) {
         setEnrollments(response.enrollments || []);
-        console.log(
-          "✅ Enrollments loaded:",
-          response.enrollments?.length || 0,
-          response.source ? `(source: ${response.source})` : ""
-        );
+        // console.log(
+        //   "Enrollments loaded:",
+        //   response.enrollments?.length || 0,
+        //   response.source ? `(source: ${response.source})` : ""
+        // );
 
         // If using mock data, set a info message instead of error
         if (response.source === "mock") {
-          console.log("ℹ️ Using mock enrollment data - backend unavailable");
+          // console.log("Using mock enrollment data - backend unavailable");
           setError("Backend temporarily unavailable - using demo data");
         } else {
           setError(null); // Clear error if API succeeds
@@ -67,21 +67,21 @@ export const EnrollmentProvider = ({ children }) => {
         throw new Error(response.message || "Failed to fetch enrollments");
       }
     } catch (err) {
-      console.error("❌ Error loading enrollments:", err);
+      // console.error("Error loading enrollments:", err);
 
       // Don't set error for network issues - just use empty array and log
       if (
         err.message.includes("Network") ||
         err.message.includes("connection")
       ) {
-        console.log("🔄 Network issue - continuing with existing enrollments");
+        // console.log(" Network issue - continuing with existing enrollments");
         setError("Backend temporarily unavailable - using demo data");
       } else {
         setError(err.message);
       }
 
       // Keep existing enrollments to prevent UI flickering
-      console.log("🔄 Keeping existing enrollments despite error");
+      // console.log(" Keeping existing enrollments despite error");
     } finally {
       setLoading(false);
     }
@@ -101,14 +101,14 @@ export const EnrollmentProvider = ({ children }) => {
         throw new Error("You are already enrolled in this course");
       }
 
-      console.log("🎯 Enrolling in course:", courseId);
+      // console.log("Enrolling in course:", courseId);
       const response = await enrollmentAPI.enrollInCourse(courseId);
 
       if (response.success) {
         // Add the new enrollment to the list
         const newEnrollment = response.enrollment;
         setEnrollments((prev) => [...prev, newEnrollment]);
-        console.log("✅ Course enrolled successfully");
+        // console.log("Course enrolled successfully");
 
         // Set info message if using mock data
         if (response.source === "mock") {
@@ -122,11 +122,11 @@ export const EnrollmentProvider = ({ children }) => {
         throw new Error(response.message || "Failed to enroll in course");
       }
     } catch (err) {
-      console.error("❌ Enrollment error:", err);
+      // console.error("Enrollment error:", err);
 
       // Handle 404 errors gracefully - create mock enrollment
       if (err.message.includes("404") || err.message.includes("Not Found")) {
-        console.log("🔄 Backend unavailable - creating mock enrollment");
+        // console.log("Backend unavailable - creating mock enrollment");
 
         const mockEnrollment = {
           _id: `mock_${courseId}_${Date.now()}`,
@@ -170,7 +170,7 @@ export const EnrollmentProvider = ({ children }) => {
         throw new Error(response.message || "Failed to unenroll from course");
       }
     } catch (err) {
-      console.error("Unenrollment error:", err);
+      // console.error("Unenrollment error:", err);
       setError(err.message);
       throw err;
     } finally {
@@ -195,7 +195,7 @@ export const EnrollmentProvider = ({ children }) => {
 
         // Set info message if using mock data
         if (response.source === "mock") {
-          console.log("ℹ️ Progress updated using mock data");
+          // console.log("Progress updated using mock data");
         }
 
         return { success: true };
@@ -203,7 +203,7 @@ export const EnrollmentProvider = ({ children }) => {
         throw new Error(response.message || "Failed to update progress");
       }
     } catch (err) {
-      console.error("Progress update error:", err);
+      // console.error("Progress update error:", err);
       setError(err.message);
       throw err;
     }

@@ -26,7 +26,7 @@ const CourseCard = ({ course, onViewDetails }) => {
   const handleEnroll = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Enrolling in course:", course._id);
+    // console.log("Enrolling in course:", course._id);
     // Add enrollment logic here
   };
 
@@ -34,19 +34,19 @@ const CourseCard = ({ course, onViewDetails }) => {
     e.preventDefault();
     e.stopPropagation();
     // Add quick view logic here
-    console.log("Quick view:", course._id);
+    // console.log("Quick view:", course._id);
   };
 
   const handleAddToWishlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Add to wishlist:", course._id);
+    // console.log("Add to wishlist:", course._id);
   };
 
   const handleShare = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Share course:", course._id);
+    // console.log("Share course:", course._id);
   };
 
   // Calculate rating stars

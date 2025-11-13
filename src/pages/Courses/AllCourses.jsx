@@ -228,10 +228,10 @@ const AllCourses = () => {
     queryFn: async () => {
       try {
         const data = await courseAPI.testConnection();
-        console.log("✅ Connection test successful:", data);
+        // console.log("Connection test successful:", data);
         return data;
       } catch (error) {
-        console.error("❌ Connection test failed:", error);
+        // console.error("Connection test failed:", error);
         throw new Error(
           "Cannot connect to the server. Please make sure your backend server is running."
         );
@@ -253,9 +253,9 @@ const AllCourses = () => {
     queryKey: ["courses", filter, debouncedSearch],
     queryFn: async () => {
       try {
-        console.log("🔄 Fetching courses...");
+        // console.log(" Fetching courses...");
         const data = await courseAPI.getAllCourses(1, 100);
-        console.log("📦 Courses data received:", data);
+        // console.log("Courses data received:", data);
 
         if (data && data.success !== false) {
           return data;
@@ -263,7 +263,7 @@ const AllCourses = () => {
           throw new Error(data?.message || "Failed to fetch courses");
         }
       } catch (error) {
-        console.error("❌ Error fetching courses:", error);
+        // console.error("Error fetching courses:", error);
         throw new Error(
           error.message || "Network error. Please check your connection."
         );
@@ -285,7 +285,7 @@ const AllCourses = () => {
   const courses = useMemo(() => {
     if (!response) return [];
 
-    console.log("📦 Raw API response:", response);
+    // console.log("Raw API response:", response);
 
     let rawCourses = [];
 
@@ -301,7 +301,7 @@ const AllCourses = () => {
         : [response.data];
     }
 
-    console.log("🔄 Processed courses:", rawCourses.length);
+    // console.log("Processed courses:", rawCourses.length);
 
     // Fallback sample data for demonstration
     if (rawCourses.length === 0) {
@@ -502,13 +502,13 @@ const AllCourses = () => {
 
   // Debug effect
   useEffect(() => {
-    console.log("🔍 DEBUG - Courses data:", {
-      courses: courses.length,
-      filteredCourses: filteredCourses.length,
-      sortedCourses: sortedCourses.length,
-      isLoading,
-      error: coursesError,
-    });
+    // console.log(" DEBUG - Courses data:", {
+    //   courses: courses.length,
+    //   filteredCourses: filteredCourses.length,
+    //   sortedCourses: sortedCourses.length,
+    //   isLoading,
+    //   error: coursesError,
+    // });
   }, [courses, filteredCourses, sortedCourses, isLoading, coursesError]);
 
   // Error states

@@ -26,7 +26,7 @@ export const ThemeProvider = ({ children }) => {
       // Default to light theme
       return false;
     } catch (error) {
-      console.error("Error reading theme from localStorage:", error);
+      // console.error("Error reading theme from localStorage:", error);
       // Clear invalid data and default to light theme
       localStorage.removeItem("theme");
       return false;
@@ -44,7 +44,7 @@ export const ThemeProvider = ({ children }) => {
         document.documentElement.classList.remove("dark");
       }
     } catch (error) {
-      console.error("Error saving theme to localStorage:", error);
+      // console.error("Error saving theme to localStorage:", error);
     }
   }, [isDark]);
 

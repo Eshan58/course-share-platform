@@ -84,11 +84,11 @@ export const EnrollmentProvider = ({ children }) => {
     try {
       dispatch({ type: ACTION_TYPES.SET_LOADING, payload: true });
 
-      console.log("🔄 Loading enrollments for user:", user.uid);
+      // console.log(" Loading enrollments for user:", user.uid);
 
       const response = await enrollmentAPI.getMyEnrollments(user.uid);
 
-      console.log("📦 Enrollment response:", response);
+      // console.log(" Enrollment response:", response);
 
       // Handle different response structures
       const enrollments = response.enrollments || response.data || [];
@@ -98,9 +98,9 @@ export const EnrollmentProvider = ({ children }) => {
         payload: enrollments,
       });
 
-      console.log(`✅ Loaded ${enrollments.length} enrollments`);
+      // console.log(`Loaded ${enrollments.length} enrollments`);
     } catch (error) {
-      // console.error("❌ Error loading enrollments:", error);
+      // console.error(" Error loading enrollments:", error);
 
       // Don't show error for 404s (no enrollments)
       if (error.response?.status !== 404) {
@@ -128,11 +128,11 @@ export const EnrollmentProvider = ({ children }) => {
     try {
       dispatch({ type: ACTION_TYPES.SET_LOADING, payload: true });
 
-      console.log("🎯 Enrolling in course:", courseId);
+      // console.log(" Enrolling in course:", courseId);
 
       const response = await enrollmentAPI.enrollCourse(courseId, user.uid);
 
-      console.log("✅ Enrollment successful:", response);
+      // console.log("Enrollment successful:", response);
 
       // Add the new enrollment to state
       const newEnrollment = response.enrollment ||
@@ -150,7 +150,7 @@ export const EnrollmentProvider = ({ children }) => {
       toast.success("Successfully enrolled in course!");
       return { success: true, data: response };
     } catch (error) {
-      // console.error("❌ Enrollment error:", error);
+      // console.error(" Enrollment error:", error);
       // const errorMessage = error.message || "Failed to enroll in course";
       // dispatch({
       //   type: ACTION_TYPES.SET_ERROR,
@@ -167,11 +167,11 @@ export const EnrollmentProvider = ({ children }) => {
     }
 
     try {
-      console.log("🔍 Checking enrollment for course:", courseId);
+      // console.log(" Checking enrollment for course:", courseId);
 
       const response = await enrollmentAPI.checkEnrollment(courseId);
 
-      console.log("🎫 Enrollment check result:", response);
+      // console.log(" Enrollment check result:", response);
 
       // Handle different response structures
       const isEnrolled =
@@ -182,7 +182,7 @@ export const EnrollmentProvider = ({ children }) => {
 
       return { isEnrolled, data: response };
     } catch (error) {
-      // console.error("❌ Enrollment check error:", error);
+      // console.error("Enrollment check error:", error);
       // For enrollment checks, we treat errors as "not enrolled"
       // return {
       //   isEnrolled: false,

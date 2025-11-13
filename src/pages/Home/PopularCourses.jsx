@@ -20,7 +20,7 @@ const PopularCourses = () => {
         setCourses(result.courses);
       }
     } catch (error) {
-      console.error("Error loading popular courses:", error);
+      // console.error("Error loading popular courses:", error);
       // Silently fail - don't show error for popular courses section
     } finally {
       setLoading(false);

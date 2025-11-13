@@ -36,7 +36,7 @@ const CourseDetails = () => {
 
   // Enhanced ID validation with better debugging
   useEffect(() => {
-    console.log("🔍 Course ID from URL:", id);
+    // console.log(" Course ID from URL:", id);
 
     if (!id) {
       toast.error("No course ID provided");
@@ -48,22 +48,22 @@ const CourseDetails = () => {
       id && id.length === 24 && /^[0-9a-fA-F]{24}$/.test(id);
 
     if (!isValidObjectId) {
-      console.error("❌ Invalid course ID format:", {
-        received: id,
-        length: id?.length,
-        validFormat: /^[0-9a-fA-F]{24}$/.test(id),
-      });
+      // console.error(" Invalid course ID format:", {
+      //   received: id,
+      //   length: id?.length,
+      //   validFormat: /^[0-9a-fA-F]{24}$/.test(id),
+      // });
       toast.error("Invalid course link");
       navigate("/courses");
       return;
     }
 
-    console.log("✅ Valid course ID format:", id);
+    // console.log("Valid course ID format:", id);
   }, [id, navigate]);
 
   // Enhanced course query with better error handling
   // Enhanced course query with better error handling
-  // ✅ FIXED: Enhanced course query with better error handling
+  // course query with better error handling
   const {
     data: courseData,
     isLoading: courseLoading,
@@ -73,7 +73,7 @@ const CourseDetails = () => {
     queryKey: ["course", id],
     queryFn: async () => {
       try {
-        console.log("🔄 Fetching course with ID:", id);
+        // console.log("Fetching course with ID:", id);
 
         // Double validation
         if (!id || !/^[0-9a-fA-F]{24}$/.test(id)) {
@@ -81,9 +81,9 @@ const CourseDetails = () => {
         }
 
         const response = await courseAPI.getCourseById(id);
-        console.log("📡 Course API response:", response);
+        // console.log(" Course API response:", response);
 
-        // ✅ FIXED: Handle all error cases properly
+        // Handle all error cases properly
         if (!response) {
           throw new Error("NO_RESPONSE");
         }
@@ -92,24 +92,24 @@ const CourseDetails = () => {
           throw new Error(response.message || "API_ERROR");
         }
 
-        // ✅ FIXED: Extract course data safely
+        // Extract course data safely
         const course = response.course || response.data;
 
         if (!course) {
-          console.error("❌ No course data in response:", response);
+          // console.error(" No course data in response:", response);
           throw new Error("NO_COURSE_DATA");
         }
 
         if (!course._id) {
-          console.error("❌ Course missing _id:", course);
+          // console.error("Course missing _id:", course);
           throw new Error("INVALID_COURSE_DATA");
         }
 
         if (course._id.toString() !== id) {
-          console.error("❌ Course ID mismatch:", {
-            expected: id,
-            received: course._id.toString(),
-          });
+          // console.error(" Course ID mismatch:", {
+          //   expected: id,
+          //   received: course._id.toString(),
+          // });
           throw new Error("COURSE_ID_MISMATCH");
         }
 
@@ -119,11 +119,11 @@ const CourseDetails = () => {
           message: "Course fetched successfully",
         };
       } catch (error) {
-        console.error("❌ Course fetch failed:", {
-          error: error.message,
-          courseId: id,
-          timestamp: new Date().toISOString(),
-        });
+        // console.error(" Course fetch failed:", {
+        //   error: error.message,
+        //   courseId: id,
+        //   timestamp: new Date().toISOString(),
+        // });
 
         // Enhanced error mapping
         let userFriendlyMessage;
@@ -189,7 +189,7 @@ const CourseDetails = () => {
   // Safely extract course data
   const course = courseData?.course;
 
-  // ✅ FIXED: Check if current user is the course owner - MOVED AFTER course initialization
+  // Check if current user is the course owner - MOVED AFTER course initialization
   const isCourseOwner = user && course?.owner === user.uid;
 
   // Enhanced enrollment check
@@ -201,7 +201,7 @@ const CourseDetails = () => {
       }
 
       try {
-        console.log("🔍 Checking enrollment status...");
+        // console.log(" Checking enrollment status...");
         const enrollmentCheck = await enrollmentAPI.checkEnrollment(id);
 
         const enrolled =
@@ -210,10 +210,10 @@ const CourseDetails = () => {
           enrollmentCheck?.data?.isEnrolled ||
           false;
 
-        console.log("🎫 Enrollment status:", enrolled);
+        // console.log(" Enrollment status:", enrolled);
         setIsEnrolled(enrolled);
       } catch (error) {
-        console.error("Enrollment check error:", error);
+        // console.error("Enrollment check error:", error);
         setIsEnrolled(false);
       } finally {
         setCheckingEnrollment(false);
@@ -234,14 +234,14 @@ const CourseDetails = () => {
       return enrollmentAPI.enrollInCourse(id);
     },
     onSuccess: (data) => {
-      console.log("✅ Enrollment successful:", data);
+      // console.log("Enrollment successful:", data);
       setIsEnrolled(true);
       toast.success("🎉 Successfully enrolled in course!");
       queryClient.invalidateQueries(["enrollments"]);
       queryClient.invalidateQueries(["user-courses"]);
     },
     onError: (error) => {
-      console.error("❌ Enrollment failed:", error);
+      // console.error(" Enrollment failed:", error);
       toast.error(
         error.message || "Failed to enroll in course. Please try again."
       );
@@ -262,7 +262,7 @@ const CourseDetails = () => {
       navigate("/courses");
     },
     onError: (error) => {
-      console.error("❌ Delete course error:", error);
+      // console.error("Delete course error:", error);
       toast.error(error.message || "Failed to delete course");
     },
   });
@@ -308,7 +308,7 @@ const CourseDetails = () => {
   };
 
   const handleRetry = () => {
-    console.log("🔄 Retrying course fetch...");
+    // console.log(" Retrying course fetch...");
     refetchCourse();
   };
 

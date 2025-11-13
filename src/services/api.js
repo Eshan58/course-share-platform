@@ -33,9 +33,9 @@ api.interceptors.request.use(
           config.headers["user-id"] = "demo-user-123";
         }
       } catch (error) {
-        console.warn(
-          "Failed to parse user data from localStorage, using demo user"
-        );
+        // console.warn(
+        //   "Failed to parse user data from localStorage, using demo user"
+        // );
         config.headers["user-id"] = "demo-user-123";
       }
     } else {
@@ -43,9 +43,9 @@ api.interceptors.request.use(
       config.headers["user-id"] = "demo-user-123";
     }
 
-    console.log(
-      `🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`
-    );
+    // console.log(
+    //   `API Request: ${config.method?.toUpperCase()} ${config.url}`
+    // );
     return config;
   },
   (error) => {
@@ -56,14 +56,14 @@ api.interceptors.request.use(
 // FIXED: SINGLE response interceptor with proper 404 handling
 api.interceptors.response.use(
   (response) => {
-    console.log(`✅ API Success: ${response.status} ${response.config.url}`);
+    // console.log(` API Success: ${response.status} ${response.config.url}`);
     return response;
   },
   (error) => {
     const url = error.config?.url;
     const status = error.response?.status;
 
-    console.error(`❌ API Error: ${url}`, status, error.message);
+    // console.error(` API Error: ${url}`, status, error.message);
 
     // Handle specific error cases
     if (status === 401) {
@@ -71,11 +71,11 @@ api.interceptors.response.use(
       localStorage.removeItem("user");
       window.location.href = "/login";
     } else if (status === 404) {
-      console.warn(`🔍 Endpoint not found: ${url}`);
+      // console.warn(`Endpoint not found: ${url}`);
 
       // For enrollment endpoints, return mock success instead of throwing error
       if (url && url.includes("/enroll")) {
-        console.log("🔄 Using mock enrollment for 404");
+        // console.log(" Using mock enrollment for 404");
 
         // Extract courseId from URL
         const urlParts = url.split("/");
@@ -587,14 +587,14 @@ const userAPI = {
   // Create or get user - FIXED: Use your backend endpoint
   syncUser: async (userData) => {
     try {
-      console.log("🔄 Syncing user with backend:", userData);
+      // console.log(" Syncing user with backend:", userData);
 
       // Use your backend's user creation endpoint
       const response = await api.post("/users", userData);
-      console.log("✅ User synced successfully");
+      // console.log(" User synced successfully");
       return response.data;
     } catch (error) {
-      console.error("❌ User sync error:", error);
+      // console.error(" User sync error:", error);
       return { success: false, message: "User sync failed but continuing" };
     }
   },
@@ -605,7 +605,7 @@ const userAPI = {
       const response = await api.get("/users/me");
       return response.data;
     } catch (error) {
-      console.error("Error fetching user profile:", error);
+      // console.error("Error fetching user profile:", error);
       throw error;
     }
   },
@@ -616,7 +616,7 @@ const userAPI = {
       const response = await api.get(`/users/${id}`);
       return response.data;
     } catch (error) {
-      console.error("Error fetching user:", error);
+      // console.error("Error fetching user:", error);
       throw error;
     }
   },
@@ -627,7 +627,7 @@ const userAPI = {
       const response = await api.post("/users", userData);
       return response.data;
     } catch (error) {
-      console.error("Error creating user:", error);
+      // console.error("Error creating user:", error);
       throw error;
     }
   },
@@ -638,7 +638,7 @@ const userAPI = {
       const response = await api.put(`/users/${id}`, userData);
       return response.data;
     } catch (error) {
-      console.error("Error updating user:", error);
+      // console.error("Error updating user:", error);
       throw error;
     }
   },
@@ -649,7 +649,7 @@ const userAPI = {
       const response = await api.delete(`/users/${id}`);
       return response.data;
     } catch (error) {
-      console.error("Error deleting user:", error);
+      // console.error("Error deleting user:", error);
       throw error;
     }
   },
@@ -660,20 +660,20 @@ const courseAPI = {
   // Get all courses with proper parameters
   getAllCourses: async (page = 1, limit = 100) => {
     try {
-      console.log(`📡 Fetching courses - page: ${page}, limit: ${limit}`);
+      // console.log(`Fetching courses - page: ${page}, limit: ${limit}`);
 
       const response = await api.get("/courses", {
         params: { page, limit },
       });
 
-      console.log(
-        "✅ Courses API response - Total courses:",
-        response.data.courses?.length
-      );
+      // console.log(
+      //   "Courses API response - Total courses:",
+      //   response.data.courses?.length
+      // );
       return response.data;
     } catch (error) {
-      console.error("❌ Courses API error:", error.message);
-      console.log("🔄 Using mock courses data");
+      // console.error(" Courses API error:", error.message);
+      // console.log(" Using mock courses data");
       // Return mock courses if API fails
       return {
         success: true,
@@ -692,7 +692,7 @@ const courseAPI = {
       const response = await api.get(`/courses/${id}`);
       return response.data;
     } catch (error) {
-      console.error("Error fetching course:", error);
+      // console.error("Error fetching course:", error);
       // Return mock course
       const mockCourse =
         mockCourses.find((course) => course._id === id) || mockCourses[0];
@@ -710,7 +710,7 @@ const courseAPI = {
       const response = await api.post("/courses", courseData);
       return response.data;
     } catch (error) {
-      console.error("Error creating course:", error);
+      // console.error("Error creating course:", error);
       throw error;
     }
   },
@@ -721,7 +721,7 @@ const courseAPI = {
       const response = await api.put(`/courses/${id}`, courseData);
       return response.data;
     } catch (error) {
-      console.error("Error updating course:", error);
+      // console.error("Error updating course:", error);
       throw error;
     }
   },
@@ -732,7 +732,7 @@ const courseAPI = {
       const response = await api.delete(`/courses/${id}`);
       return response.data;
     } catch (error) {
-      console.error("Error deleting course:", error);
+      // console.error("Error deleting course:", error);
       throw error;
     }
   },
@@ -745,7 +745,7 @@ const courseAPI = {
       });
       return response.data;
     } catch (error) {
-      console.error("Error searching courses:", error);
+      // console.error("Error searching courses:", error);
       // Return mock search results
       const query = searchParams.q?.toLowerCase();
       const filteredCourses = query
@@ -770,10 +770,10 @@ const courseAPI = {
   testConnection: async () => {
     try {
       const response = await api.get("/health");
-      console.log("✅ Backend connection successful");
+      // console.log(" Backend connection successful");
       return response.data;
     } catch (error) {
-      console.error("Course API connection test failed:", error.message);
+      // console.error("Course API connection test failed:", error.message);
       // Return mock health response
       return {
         success: true,
@@ -792,14 +792,14 @@ const enrollmentAPI = {
   // Enroll in course - FIXED: Better error handling and mock data fallback
   enrollInCourse: async (courseId) => {
     try {
-      console.log("🎯 Attempting to enroll in course:", courseId);
+      // console.log(" Attempting to enroll in course:", courseId);
 
       // Use your backend's enrollment endpoint
       const response = await api.post(`/courses/${courseId}/enroll`);
-      console.log("✅ Enrollment successful via API");
+      // console.log("Enrollment successful via API");
       return response.data;
     } catch (error) {
-      console.error("❌ Enrollment API error:", error.message);
+      // console.error("Enrollment API error:", error.message);
 
       // Check if it's a connection error or 404
       if (
@@ -808,9 +808,9 @@ const enrollmentAPI = {
         error.message.includes("Connection refused") ||
         error.response?.status === 404
       ) {
-        console.log(
-          "🔄 Backend unavailable or route not found - using mock enrollment data"
-        );
+        // console.log(
+        //   " Backend unavailable or route not found - using mock enrollment data"
+        // );
 
         // Create proper mock enrollment with course data
         const course = mockCourses.find((c) => c._id === courseId) || {
@@ -856,11 +856,11 @@ const enrollmentAPI = {
   // Get user enrollments - FIXED: Better connection error detection
   getUserEnrollments: async (userId = "demo-user-123") => {
     try {
-      console.log("📖 Fetching enrollments for user:", userId);
+      // console.log("Fetching enrollments for user:", userId);
 
       // Use your backend's enrollment endpoint
       const response = await api.get("/enrollments/my-courses");
-      console.log("✅ Enrollments fetched successfully via API");
+      // console.log("Enrollments fetched successfully via API");
 
       return {
         success: true,
@@ -872,7 +872,7 @@ const enrollmentAPI = {
         source: "api",
       };
     } catch (error) {
-      console.error("❌ Error fetching enrollments:", error.message);
+      // console.error("Error fetching enrollments:", error.message);
 
       // Check if it's a connection error
       if (
@@ -881,16 +881,16 @@ const enrollmentAPI = {
         error.message.includes("Connection refused") ||
         error.response?.status === 404
       ) {
-        console.log(
-          "🔄 Backend connection failed - using mock enrollment data"
-        );
+        // console.log(
+        //   " Backend connection failed - using mock enrollment data"
+        // );
 
         // Return comprehensive mock enrollments
         const userEnrollments = mockEnrollments.filter(
           (e) => e.userId === userId
         );
 
-        console.log("📊 Mock enrollments loaded:", userEnrollments.length);
+        // console.log("Mock enrollments loaded:", userEnrollments.length);
         return {
           success: true,
           enrollments: userEnrollments,
@@ -901,7 +901,7 @@ const enrollmentAPI = {
       }
 
       // For other errors, still return mock data but log the actual error
-      console.log("🔄 Using mock data due to API error:", error.message);
+      // console.log("Using mock data due to API error:", error.message);
       const userEnrollments = mockEnrollments.filter(
         (e) => e.userId === userId
       );
@@ -921,7 +921,7 @@ const enrollmentAPI = {
       const response = await api.get(`/enrollments/check/${courseId}`);
       return response.data;
     } catch (error) {
-      console.error("Error checking enrollment:", error);
+      // console.error("Error checking enrollment:", error);
 
       // Check mock data
       const isEnrolled = mockEnrollments.some(
@@ -950,7 +950,7 @@ const enrollmentAPI = {
       );
       return response.data;
     } catch (error) {
-      console.error("Error updating progress:", error);
+      // console.error("Error updating progress:", error);
       return {
         success: true,
         message: "Progress updated successfully (using mock data)",
@@ -965,7 +965,7 @@ const enrollmentAPI = {
       const response = await api.delete(`/enrollments/${enrollmentId}`);
       return response.data;
     } catch (error) {
-      console.error("Error unenrolling:", error);
+      // console.error("Error unenrolling:", error);
       return {
         success: true,
         message: "Successfully unenrolled from course (using mock data)",
@@ -1014,7 +1014,7 @@ const categoriesAPI = {
         source: "api",
       };
     } catch (error) {
-      console.error("Error fetching categories:", error);
+      // console.error("Error fetching categories:", error);
       return {
         success: true,
         categories: [
@@ -1037,7 +1037,7 @@ const categoriesAPI = {
       });
       return response.data;
     } catch (error) {
-      console.error("Error fetching courses by category:", error);
+      // console.error("Error fetching courses by category:", error);
       // Return mock filtered courses
       const filteredCourses = mockCourses.filter(
         (course) => course.category === category
@@ -1058,10 +1058,10 @@ const generalAPI = {
   healthCheck: async () => {
     try {
       const response = await api.get("/health");
-      console.log("✅ Backend health check passed");
+      // console.log(" Backend health check passed");
       return response.data;
     } catch (error) {
-      console.error("Health check failed:", error.message);
+      // console.error("Health check failed:", error.message);
       return {
         success: true,
         message: "CourseShare API is running! (mock)",
@@ -1077,10 +1077,10 @@ const generalAPI = {
   testConnection: async () => {
     try {
       const response = await api.get("/health");
-      console.log("✅ Connection test successful");
+      // console.log("Connection test successful");
       return response.data;
     } catch (error) {
-      console.error("Connection test failed:", error.message);
+      // console.error("Connection test failed:", error.message);
       // Return success anyway with mock data
       return {
         success: true,
@@ -1095,7 +1095,7 @@ const generalAPI = {
   testBackendConnection: async () => {
     try {
       const response = await api.get("/health");
-      console.log("✅ Backend connection successful:", response.data);
+      // console.log("Backend connection successful:", response.data);
       return {
         connected: true,
         message: "Backend is running",
@@ -1103,7 +1103,7 @@ const generalAPI = {
         source: "api",
       };
     } catch (error) {
-      console.log("🔴 Backend connection failed:", error.message);
+      // console.log("Backend connection failed:", error.message);
       return {
         connected: false,
         message: "Backend unavailable - using mock data",
@@ -1115,14 +1115,14 @@ const generalAPI = {
 
   // Initialize API
   initialize: async () => {
-    console.log("🚀 Initializing API connections...");
+    // console.log(" Initializing API connections...");
 
     try {
       const health = await generalAPI.healthCheck();
-      console.log("📊 Backend Status:", health.message);
+      // console.log("Backend Status:", health.message);
 
       const courses = await courseAPI.getAllCourses(1, 5);
-      console.log("📚 Courses Available:", courses.courses?.length || 0);
+      // console.log(" Courses Available:", courses.courses?.length || 0);
 
       return {
         backend: true,
@@ -1131,7 +1131,7 @@ const generalAPI = {
         source: "api",
       };
     } catch (error) {
-      console.log("🔄 Running in mock mode - some features may use demo data");
+      // console.log(" Running in mock mode - some features may use demo data");
       return {
         backend: false,
         courses: true, // We have mock courses
@@ -1156,5 +1156,5 @@ export default api;
 
 // FIXED: Initialize API AFTER all definitions and exports
 generalAPI.initialize().then((status) => {
-  console.log("🎯 API Status:", status);
+  // console.log("API Status:", status);
 });
